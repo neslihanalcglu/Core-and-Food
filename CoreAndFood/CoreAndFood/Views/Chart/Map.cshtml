@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "Map";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Map</title>
+
+    <style type="text/css">
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+    </style>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const uluru = { lat: 41.015137, lng: 28.979530 };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: uluru,
+        });
+
+        const image ="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+
+        // The marker, positioned at Uluru
+
+        var markers=[
+            {
+                coordinates:{ lat: 41.015137, lng: 28.979530},
+                content:'<h2>Restaurant1</h2>',
+                image:image,
+            },
+            {
+                coordinates:{ lat: 36.884804, lng: 30.704044},
+                //content:'<h2>Restaurant2</h2>',
+            }
+        ];
+
+        for(var i=0;i<markers.length;i++){
+            AddMarker(markers[i]);
+        }
+
+        function AddMarker(options){
+                const marker = new google.maps.Marker({
+                position: options.coordinates,
+                map: map,
+
+            });
+
+            if(options.image){
+                marker.setIcon(options.image)
+            }
+            if(options.content){
+                var infoWindow= new google.maps.InfoWindow({
+                    content:options.content
+                });
+
+                marker.addListener('click',function(){
+                    infoWindow.open(map,marker);
+                });
+            }
+
+        }
+
+      }
+    </script>
+</head>
+<body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkYOGJeDsKIxDszkng4Vxsgb-A7QbdokA&callback=initMap&libraries=&v=weekly"
+            async></script>
+</body>
+</html>
+
+
+

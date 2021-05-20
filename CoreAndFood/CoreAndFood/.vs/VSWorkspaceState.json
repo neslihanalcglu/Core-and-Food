@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Views",
+    "\\Views\\Default",
+    "\\Views\\Default\\Components",
+    "\\Views\\Default\\Components\\CategoryGetList",
+    "\\Views\\Shared"
+  ],
+  "SelectedNode": "\\Views\\Default\\Components\\CategoryGetList\\Default.cshtml",
+  "PreviewInSolutionExplorer": false
+}
